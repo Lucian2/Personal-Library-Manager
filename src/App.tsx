@@ -1,11 +1,16 @@
 import { Container } from '@mui/material';
-import BookList from './components/booklist/BookList';
+import BookManagement from './components/book-management/BookManagement';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <Container sx={{ mt: 5 }}>
-      <BookList />
-    </Container>
+    <>
+      <Container>
+        <BookManagement />
+      </Container>
+      <ToastContainer position='top-center' autoClose={2000} hideProgressBar />
+    </>
   );
 }
 

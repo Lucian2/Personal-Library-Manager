@@ -6,15 +6,27 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { FunctionComponent } from 'react';
-import { BookType, fetchBooks } from './api';
+import { fetchBooks } from './api';
 import BOOK_TABLE_HEADERS from '../../constants/tableHeaders';
 import { mapBookToRow } from './helpers';
 import ENDPOINTS from '../../constants/urls';
 import useSWR from 'swr';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import messages from '../../constants/messages';
+import { BookType } from '../../models/common';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const BookList: FunctionComponent = () => {
+interface BookListProps {
+  onEditIconClick: (book: BookType) => void;
+  onDeleteIconClick: (bookId: number) => void;
+}
+
+const BookList: FunctionComponent<BookListProps> = ({
+  onEditIconClick,
+  onDeleteIconClick,
+}) => {
   const { data: bookList, error } = useSWR<BookType[]>(
     ENDPOINTS.BOOKS,
     fetchBooks
@@ -43,7 +55,11 @@ const BookList: FunctionComponent = () => {
         <TableHead>
           <TableRow>
             {BOOK_TABLE_HEADERS.map((header) => (
-              <TableCell key={header} align='center'>
+              <TableCell
+                sx={{ fontWeight: 'bold' }}
+                key={header}
+                align='center'
+              >
                 {header}
               </TableCell>
             ))}
@@ -53,14 +69,29 @@ const BookList: FunctionComponent = () => {
           {!!tableRows?.length ? (
             tableRows?.map((row) => (
               <TableRow
-                key={row.title}
+                key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell align='center'>{row.title}</TableCell>
                 <TableCell align='center'>{row.author}</TableCell>
                 <TableCell align='center'>{row.genre}</TableCell>
                 <TableCell align='center'>{row.description}</TableCell>
-                <TableCell align='center'>{messages.edit}</TableCell>
+                <TableCell align='center'>
+                  <IconButton
+                    aria-label='edit'
+                    color='secondary'
+                    onClick={() => onEditIconClick(row)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label='delete'
+                    color='error'
+                    onClick={() => onDeleteIconClick(row.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))
           ) : (
