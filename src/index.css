@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+table tr {
+  border: 2px solid #000000;
+}
+
+table thead {
+  background-color: #e9e7e7;
+}
+
+.MuiTableContainer-root::-webkit-scrollbar {
+  height: 8px;
+}
+
+.MuiTableContainer-root::-webkit-scrollbar-thumb {
+  background-color: #1f6bff;
+  border-radius: 10px;
+}
+
+.MuiTableContainer-root::-webkit-scrollbar-thumb:hover {
+  background-color: #0b4ac7;
+}
+
+@media screen and (max-width: 700px) {
+  .MuiTableContainer-root {
+    padding-bottom: 10px;
+  }
+}

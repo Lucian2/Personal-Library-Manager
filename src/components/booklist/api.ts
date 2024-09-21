@@ -1,12 +1,6 @@
 import axios from '../../api/axios';
 import ENDPOINTS from '../../constants/urls';
-
-export interface BookType {
-  title: string;
-  author: string;
-  genre: string;
-  description: string;
-}
+import { BookType } from '../../models/common';
 
 export const fetchBooks = async (): Promise<BookType[]> => {
   const response = await axios.get<BookType[]>(`${ENDPOINTS.BOOKS}`);

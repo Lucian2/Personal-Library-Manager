@@ -9,6 +9,15 @@ const theme = createTheme({
       main: '#37ca57',
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
+    },
+  },
 });
 
 export default theme;
