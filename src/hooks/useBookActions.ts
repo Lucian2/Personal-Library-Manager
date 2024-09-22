@@ -22,7 +22,7 @@ const useBookActions = () => {
       await addBook(bookData);
       mutate(ENDPOINTS.BOOKS);
       toast.success(messages.addBookSuccess);
-      if (onSuccess) onSuccess(); // Callback pentru închiderea modalului
+      if (onSuccess) onSuccess();
     } catch (error: any) {
       const errorMessage =
         error?.response?.data?.message || messages.addBookError;
