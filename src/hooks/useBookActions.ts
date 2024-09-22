@@ -52,11 +52,12 @@ const useBookActions = () => {
     }
   };
 
-  const handleDeleteBook = async (bookId: number) => {
+  const handleDeleteBook = async (bookId: number, onSuccess?: () => void) => {
     try {
       await deleteBook(bookId);
       mutate(ENDPOINTS.BOOKS);
       toast.success(messages.deleteBookSuccess);
+      if (onSuccess) onSuccess();
     } catch (error: any) {
       const errorMessage =
         error?.response?.data?.message || messages.deleteBookError;

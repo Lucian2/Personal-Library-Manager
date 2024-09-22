@@ -11,6 +11,7 @@ const messages = {
   editBookError: 'Error updating book. Please try again.',
   deleteBookSuccess: 'Book deleted successfully',
   deleteBookError: 'Error deleting book. Please try again.',
+  allGenres: 'All genres',
   validation: {
     title: {
       minLength: 'Title must be at least 3 characters long',
