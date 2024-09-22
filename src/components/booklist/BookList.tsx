@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { fetchBooks } from './api';
 import BOOK_TABLE_HEADERS from '../../constants/tableHeaders';
 import { mapBookToRow } from './helpers';
@@ -19,11 +19,15 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface BookListProps {
+  genreFilter: string;
+  onGenresExtracted: (books: BookType[]) => void;
   onEditIconClick: (book: BookType) => void;
   onDeleteIconClick: (bookId: number) => void;
 }
 
 const BookList: FunctionComponent<BookListProps> = ({
+  genreFilter,
+  onGenresExtracted,
   onEditIconClick,
   onDeleteIconClick,
 }) => {
@@ -31,7 +35,16 @@ const BookList: FunctionComponent<BookListProps> = ({
     ENDPOINTS.BOOKS,
     fetchBooks
   );
-  const tableRows = bookList?.map((el: BookType) => mapBookToRow(el));
+  const filteredBooks = genreFilter
+    ? bookList?.filter((book) => book.genre.toLocaleLowerCase() === genreFilter)
+    : bookList;
+  const tableRows = filteredBooks?.map((el: BookType) => mapBookToRow(el));
+
+  useEffect(() => {
+    if (bookList) {
+      onGenresExtracted(bookList);
+    }
+  }, [bookList]);
 
   if (error) {
     console.error('Error fetching books:', error);
