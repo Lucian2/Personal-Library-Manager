@@ -7,7 +7,7 @@ import messages from '../../constants/messages';
 import useBookActions from '../../hooks/useBookActions';
 import GenreSelect from '../genre-select/GenreSelect';
 
-const BookManagement: FunctionComponent = () => {
+const BooksManagement: FunctionComponent = () => {
   const [openAddBookModal, setOpenAddBookModal] = useState(false);
   const [openEditBookModal, setOpenEditBookModal] = useState(false);
   const [currentBook, setCurrentBook] = useState<BookType | null>(null);
@@ -105,4 +105,4 @@ const BookManagement: FunctionComponent = () => {
   );
 };
 
-export default BookManagement;
+export default BooksManagement;
