@@ -60,7 +60,7 @@ table thead th:last-child {
   .select-genre {
     min-width: 100px;
   }
-  .book-management-header {
+  .books-management-header {
     gap: 20px;
   }
 }

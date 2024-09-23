@@ -5,7 +5,7 @@ import {
   addBook,
   deleteBook,
   updateBook,
-} from '../components/book-management/api';
+} from '../components/books-management/api';
 import ENDPOINTS from '../constants/urls';
 import messages from '../constants/messages';
 import { toast } from 'react-toastify';
