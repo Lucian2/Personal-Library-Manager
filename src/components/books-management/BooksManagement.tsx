@@ -36,7 +36,7 @@ const BooksManagement: FunctionComponent = () => {
   return (
     <Box>
       <Box
-        className='book-management-header'
+        className='books-management-header'
         display={'flex'}
         justifyContent={'space-between'}
         alignItems={'center'}
